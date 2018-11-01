@@ -9,7 +9,7 @@
       <div class="innerObjectDisplayerZone">
              <!-- <object-displayer :object-source="selectedObject"/>-->
              <pre>
-              <dummy-comp :text="experiment"/>
+              <dummy-comp :text="experiment"/> <!--IN PARTICOLARE QUI DEVO TROVARE UA TATTICA-->
              </pre>
       </div>
   </div>
