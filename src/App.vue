@@ -9,12 +9,15 @@
 
 <script>
 import ObjectDisplayer from "./components/ObjectDisplayer.vue";
+
+
 import { jsonManager } from "./jsonManager.js"
 
 export default {
   name: 'app',
   components:{
-    "object-displayer":ObjectDisplayer
+    "object-displayer":ObjectDisplayer,
+
   },
   data(){
     var data = {jsonIntergitySource: jsonManager.body["integrity"]};
@@ -48,6 +51,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>

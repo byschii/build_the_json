@@ -41,11 +41,11 @@ export default {
 
 <style scoped>
 div > * {
-   /*border: 3px;*/
+   /*border: 3px;
    margin: 1pt;
 
 }
 div.section {
-   border: 1pt solid black;
+   border: 1pt solid black;*/
 }
 </style>

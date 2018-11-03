@@ -5,12 +5,9 @@
       <option v-for="opt in options" v-bind:key="opt" @click="setDecided(opt)">
         {{opt}} 
       </option>
-    </select><pre>{{selected}}</pre>
+    </select>
       <div class="innerObjectDisplayerZone">
-             <!-- <object-displayer :object-source="selectedObject"/>-->
-             <pre>
-              <dummy-comp :text="experiment"/> <!--IN PARTICOLARE QUI DEVO TROVARE UA TATTICA-->
-             </pre>
+          <caronte altro="google" :datiDaTraghettare="selectedObject"/>
       </div>
   </div>
 </template>
@@ -18,14 +15,15 @@
 <script>
 //
 import ObjectDisplayer from "./ObjectDisplayer.vue";
-import DummyComp from "./DummyComp.vue";
+import Caronte from "./Caronte.vue";
 import _ from "lodash";
+import cr from "crypto-js";
 
 export default {
   name:"picker",
    components: {
       "object-displayer":ObjectDisplayer,
-      "dummy-comp" : DummyComp
+      "caronte":Caronte
    },
    props: {
       label: {
@@ -40,34 +38,26 @@ export default {
    },
    data() {
       var state = {
-         options :[]
+         options :[],
+         selected: null,
+         randomino: null,
+         selectedObject: null
       };
       return state;
-   },
-
-   computed:{
-      jsonToExplore(){
-        return this.sourceData[this.selected];
-      },
-
-      experiment(){
-        let r1 = _.random(0,10);
-        let r2 = _.random(10,100);
-        return [r1,r2];
-      }
-
-   },
-   
+   },   
    methods: {
       setDecided(opz) {
          this.selected = opz;
-
+         
+         this.selectedObject = this.sourceData[this.selected];
+         this.randomino = cr.SHA1(this.selected).toString();
       }
    },
-
    created: function() {
       this.options = _.keys(this.sourceData);
+      
       this.selected = this.options[0];
+      this.selectedObject = this.sourceData[this.selected];
    }
 };
 </script>
@@ -75,9 +65,9 @@ export default {
 
 <style scoped>
 div > * {
-   margin: 1pt;
+   /*margin: 1pt;
 }
 div.pkr_container {
-   border: 1px solid #333;
+   border: 1px solid #333;*/
 }
 </style>
